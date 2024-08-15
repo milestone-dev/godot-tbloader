@@ -93,7 +93,7 @@ void Builder::build_worldspawn(int idx, LMEntity& ent)
 	// Find name for entity
 	const char* tb_name;
 	if (!strcmp(ent.get_property("classname"), "worldspawn")) {
-		tb_name = "Default Layer";
+		tb_name = "Worldspawn";
 	} else {
 		tb_name = ent.get_property("_tb_name", nullptr);
 	}
@@ -167,7 +167,7 @@ void Builder::build_entity_custom(int idx, LMEntity& ent, LMEntityGeometry& geo,
 			}
 
 			auto instance = scene->instantiate();
-			m_loader->add_child(instance);
+			m_loader->add_child(instance, true);
 			instance->set_owner(m_loader->get_owner());
 
 			if (instance->is_class("Node3D")) {
