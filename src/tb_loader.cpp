@@ -62,6 +62,9 @@ void TBLoader::_bind_methods()
 
 	ADD_GROUP("Textures", "texture_");
 	ADD_PROPERTY(PropertyInfo(Variant::STRING, "texture_path", PROPERTY_HINT_DIR, "Textures Path"), "set_texture_path", "get_texture_path");
+
+	ADD_SIGNAL(MethodInfo("build_meshes_complete"));
+
 }
 
 TBLoader::TBLoader()
@@ -221,4 +224,5 @@ void TBLoader::build_meshes()
 	Builder builder(this);
 	builder.load_map(m_map_path);
 	builder.build_map();
+	emit_signal("build_meshes_complete");
 }
